@@ -1,0 +1,17 @@
+option('chip',
+    type: 'combo',
+    choices: ['GD32F405', 'GD32F407', 'GD32F425', 'GD32F427', 'GD32F450', 'GD32F470'],
+    value: 'GD32F407',
+    description: 'Select GD32F4xx chip model')
+
+option('time',
+    type: 'combo',
+    choices: [
+        'irc16m', 'hxtal',
+        '120m_irc16m', '120m_8m_hxtal', '120m_25m_hxtal',
+        '168m_irc16m', '168m_8m_hxtal', '168m_25m_hxtal',
+        '200m_irc16m', '200m_8m_hxtal', '200m_25m_hxtal',
+        '240m_irc16m', '240m_8m_hxtal', '240m_25m_hxtal'
+    ],
+    value: '168m_25m_hxtal',
+    description: 'Select system clock source and frequency')
