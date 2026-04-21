@@ -1,7 +1,7 @@
 project('GD32F4xx_Firmware', 'c', version: '3.3.3')
 
-option_time = get_option('time')
 option_chip = get_option('chip')
+option_time = get_option('time')
 
 time_map = {
     'irc16m': 'IRC16M',
@@ -20,12 +20,10 @@ time_map = {
     '240m_25m_hxtal': '240M_PLL_25M_HXTAL',
 }
 
-time = time_map[option_time]
+global_args = ['-mcpu=cortex-m4', '-mthumb', '-mfpu=fpv4-sp-d16', '-mfloat-abi=hard',
+               '-DGD32F4XX', '-D' + option_chip, '-D__SYSTEM_CLOCK_' + time_map[option_time]]
 
-common_args = ['-mcpu=cortex-m4', '-mthumb', '-mfpu=fpv4-sp-d16', '-mfloat-abi=hard',
-               '-DGD32F4XX', '-D' + option_chip, '-D__SYSTEM_CLOCK_' + time]
-
-add_project_arguments(common_args, language: 'c')
+add_project_arguments(global_args, language: 'c')
 
 subdir('CMSIS')
 subdir('GD32F4xx_standard_peripheral')
