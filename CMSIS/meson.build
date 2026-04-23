@@ -4,8 +4,8 @@ cmsis_src_root = 'GD/GD32F4xx/Source/GCC'
 chip_startup_map = {
     'GD32F405': cmsis_src_root + '/startup_gd32f405_425.S',
     'GD32F407': cmsis_src_root + '/startup_gd32f407_427.S',
-    'GD32F425': cmsis_src_root + '/startup_gd32f450_470.S',
-    'GD32F427': cmsis_src_root + '/startup_gd32f450_470.S',
+    'GD32F425': cmsis_src_root + '/startup_gd32f405_425.S',
+    'GD32F427': cmsis_src_root + '/startup_gd32f407_427.S',
     'GD32F450': cmsis_src_root + '/startup_gd32f450_470.S',
     'GD32F470': cmsis_src_root + '/startup_gd32f450_470.S',
 }
