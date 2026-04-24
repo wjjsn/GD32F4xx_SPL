@@ -1,4 +1,4 @@
-periph_root = include_directories('Include')
+periph_root = include_directories('Include','../CMSIS/GD/GD32F4xx/Include','../CMSIS')
 
 periph_src = [
     'Source/gd32f4xx_adc.c',
@@ -32,8 +32,13 @@ periph_src = [
     'Source/gd32f4xx_wwdgt.c',
 ]
 
+chip_option = get_option('chip')
+chip_family = chip_option.split('_')[0]
+
 periph_lib = static_library('gd32f4xx_peripheral', periph_src,
-                            include_directories: periph_root)
+                            include_directories: periph_root,
+                            c_args:['-D'+chip_family],
+                            cpp_args:['-D'+chip_family],)
 
 set_variable('periph_root', periph_root)
 set_variable('periph_lib', periph_lib)
