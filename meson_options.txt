@@ -1,7 +1,7 @@
 option('chip',
     type: 'combo',
     choices: [
-        'GD32F405_xE', 'GD32F405_xG', 'GD32F405_xK',
+        '','GD32F405_xE', 'GD32F405_xG', 'GD32F405_xK',
         'GD32F407_xE', 'GD32F407_xG', 'GD32F407_xK',
         'GD32F425_xE', 'GD32F425_xG', 'GD32F425_xK',
         'GD32F427_xE', 'GD32F427_xG', 'GD32F427_xK',
