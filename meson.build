@@ -3,6 +3,10 @@ project('GD32F4xx_Firmware', 'c', version: '3.3.3')
 option_chip = get_option('chip')
 option_time = get_option('time')
 
+if option_chip == ''
+    error('chip option must be specified by user: meson setup -Dchip=GD32F407 <source_dir>')
+endif
+
 time_map = {
     'irc16m': 'IRC16M',
     'hxtal': 'HXTAL',
@@ -27,3 +31,13 @@ add_project_arguments(global_args, language: 'c')
 
 subdir('CMSIS')
 subdir('GD32F4xx_standard_peripheral')
+
+gd32f4xx_dep = declare_dependency(
+    include_directories: [get_variable('cmsis_root'), get_variable('periph_root')],
+    link_with: get_variable('periph_lib'),
+    variables: {
+        'startup': get_variable('chip_startup'),
+        'ldscript': get_variable('chip_ldscript'),
+        'chip': get_option('chip')
+    }
+)
