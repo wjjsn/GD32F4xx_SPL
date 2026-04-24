@@ -1,13 +1,13 @@
 cmsis_root = include_directories('GD/GD32F4xx/Include')
 cmsis_src_root = 'GD/GD32F4xx/Source/GCC'
 
-chip_startup_map = {
-    'GD32F405': cmsis_src_root + '/startup_gd32f405_425.S',
-    'GD32F407': cmsis_src_root + '/startup_gd32f407_427.S',
-    'GD32F425': cmsis_src_root + '/startup_gd32f405_425.S',
-    'GD32F427': cmsis_src_root + '/startup_gd32f407_427.S',
-    'GD32F450': cmsis_src_root + '/startup_gd32f450_470.S',
-    'GD32F470': cmsis_src_root + '/startup_gd32f450_470.S',
+chip_src_map = {
+    'GD32F405': [cmsis_src_root + '/startup_gd32f405_425.S', 'GD/GD32F4xx/Source/system_gd32f4xx.c'],
+    'GD32F407': [cmsis_src_root + '/startup_gd32f407_427.S', 'GD/GD32F4xx/Source/system_gd32f4xx.c'],
+    'GD32F425': [cmsis_src_root + '/startup_gd32f405_425.S', 'GD/GD32F4xx/Source/system_gd32f4xx.c'],
+    'GD32F427': [cmsis_src_root + '/startup_gd32f407_427.S', 'GD/GD32F4xx/Source/system_gd32f4xx.c'],
+    'GD32F450': [cmsis_src_root + '/startup_gd32f450_470.S', 'GD/GD32F4xx/Source/system_gd32f4xx.c'],
+    'GD32F470': [cmsis_src_root + '/startup_gd32f450_470.S', 'GD/GD32F4xx/Source/system_gd32f4xx.c'],
 }
 
 chip_ld_map = {
@@ -19,6 +19,9 @@ chip_ld_map = {
     'GD32F470': cmsis_src_root + '/Ld/gd32f470xG_flash.ld',
 }
 
-gd32f4xx_cmsis_dep = declare_dependency(include_directories: cmsis_root,
-                                        variables: {'startup': chip_startup_map[get_option('chip')],
-                                                   'ldscript': chip_ld_map[get_option('chip')]})
+cmsis_lib = static_library('gd32f4xx_cmsis', chip_src_map[get_option('chip')],
+                           include_directories: cmsis_root)
+
+gd32f4xx_cmsis_dep = declare_dependency(link_with: cmsis_lib,
+                                        include_directories: cmsis_root,
+                                        variables: {'ldscript': chip_ld_map[get_option('chip')]})
