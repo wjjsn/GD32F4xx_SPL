@@ -1,7 +1,7 @@
 option('chip',
     type: 'combo',
     choices: ['GD32F405', 'GD32F407', 'GD32F425', 'GD32F427', 'GD32F450', 'GD32F470'],
-    value: 'GD32F407',
+    value: '',
     description: 'Select GD32F4xx chip model')
 
 option('time',
