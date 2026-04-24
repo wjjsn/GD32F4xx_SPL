@@ -35,6 +35,6 @@ chip_ld_map = {
 
 chip_option = get_option('chip')
 
-gd32f4xx_cmsis_dep = declare_dependency(include_directories: cmsis_root,
-                                        variables: {'startup': chip_startup_map[chip_option.split('_')[0]],
-                                                   'ldscript': chip_ld_map[chip_option]})
+set_variable('cmsis_root', cmsis_root)
+set_variable('chip_startup', chip_startup_map[chip_option.split('_')[0]])
+set_variable('chip_ldscript', chip_ld_map[chip_option])
