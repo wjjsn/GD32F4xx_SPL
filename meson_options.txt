@@ -1,8 +1,15 @@
 option('chip',
     type: 'combo',
-    choices: ['GD32F405', 'GD32F407', 'GD32F425', 'GD32F427', 'GD32F450', 'GD32F470'],
+    choices: [
+        'GD32F405_xE', 'GD32F405_xG', 'GD32F405_xK',
+        'GD32F407_xE', 'GD32F407_xG', 'GD32F407_xK',
+        'GD32F425_xE', 'GD32F425_xG', 'GD32F425_xK',
+        'GD32F427_xE', 'GD32F427_xG', 'GD32F427_xK',
+        'GD32F450_xE', 'GD32F450_xG', 'GD32F450_xK', 'GD32F450_xI',
+        'GD32F470_xE', 'GD32F470_xG', 'GD32F470_xK', 'GD32F470_xI',
+    ],
     value: '',
-    description: 'Select GD32F4xx chip model')
+    description: 'Select GD32F4xx chip model and flash size')
 
 option('time',
     type: 'combo',
