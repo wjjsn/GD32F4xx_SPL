@@ -1,5 +1,6 @@
 cmsis_root = include_directories('GD/GD32F4xx/Include')
 cmsis_src_root = 'GD/GD32F4xx/Source/GCC'
+ldscript_path = meson.current_source_dir()/'GD'/'GD32F4xx'/'Source'/'GCC'/'Ld'
 system_src = 'GD/GD32F4xx/Source/system_gd32f4xx.c'
 
 chip_startup_map = {
@@ -12,26 +13,26 @@ chip_startup_map = {
 }
 
 chip_ld_map = {
-    'GD32F405_xE': cmsis_src_root + '/Ld/gd32f405_407_xE_flash.ld',
-    'GD32F405_xG': cmsis_src_root + '/Ld/gd32f405_407_xG_flash.ld',
-    'GD32F405_xK': cmsis_src_root + '/Ld/gd32f405_407_xK_flash.ld',
-    'GD32F407_xE': cmsis_src_root + '/Ld/gd32f405_407_xE_flash.ld',
-    'GD32F407_xG': cmsis_src_root + '/Ld/gd32f405_407_xG_flash.ld',
-    'GD32F407_xK': cmsis_src_root + '/Ld/gd32f405_407_xK_flash.ld',
-    'GD32F425_xE': cmsis_src_root + '/Ld/gd32f425_427_xE_flash.ld',
-    'GD32F425_xG': cmsis_src_root + '/Ld/gd32f425_427_xG_flash.ld',
-    'GD32F425_xK': cmsis_src_root + '/Ld/gd32f425_427_xK_flash.ld',
-    'GD32F427_xE': cmsis_src_root + '/Ld/gd32f425_427_xE_flash.ld',
-    'GD32F427_xG': cmsis_src_root + '/Ld/gd32f425_427_xG_flash.ld',
-    'GD32F427_xK': cmsis_src_root + '/Ld/gd32f425_427_xK_flash.ld',
-    'GD32F450_xE': cmsis_src_root + '/Ld/gd32f450xE_flash.ld',
-    'GD32F450_xG': cmsis_src_root + '/Ld/gd32f450xG_flash.ld',
-    'GD32F450_xK': cmsis_src_root + '/Ld/gd32f450xK_flash.ld',
-    'GD32F450_xI': cmsis_src_root + '/Ld/gd32f450xI_flash.ld',
-    'GD32F470_xE': cmsis_src_root + '/Ld/gd32f470xE_flash.ld',
-    'GD32F470_xG': cmsis_src_root + '/Ld/gd32f470xG_flash.ld',
-    'GD32F470_xK': cmsis_src_root + '/Ld/gd32f470xK_flash.ld',
-    'GD32F470_xI': cmsis_src_root + '/Ld/gd32f470xI_flash.ld',
+    'GD32F405_xE': ldscript_path/'gd32f405_407_xE_flash.ld',
+    'GD32F405_xG': ldscript_path/'gd32f405_407_xG_flash.ld',
+    'GD32F405_xK': ldscript_path/'gd32f405_407_xK_flash.ld',
+    'GD32F407_xE': ldscript_path/'gd32f405_407_xE_flash.ld',
+    'GD32F407_xG': ldscript_path/'gd32f405_407_xG_flash.ld',
+    'GD32F407_xK': ldscript_path/'gd32f405_407_xK_flash.ld',
+    'GD32F425_xE': ldscript_path/'gd32f425_427_xE_flash.ld',
+    'GD32F425_xG': ldscript_path/'gd32f425_427_xG_flash.ld',
+    'GD32F425_xK': ldscript_path/'gd32f425_427_xK_flash.ld',
+    'GD32F427_xE': ldscript_path/'gd32f425_427_xE_flash.ld',
+    'GD32F427_xG': ldscript_path/'gd32f425_427_xG_flash.ld',
+    'GD32F427_xK': ldscript_path/'gd32f425_427_xK_flash.ld',
+    'GD32F450_xE': ldscript_path/'gd32f450xE_flash.ld',
+    'GD32F450_xG': ldscript_path/'gd32f450xG_flash.ld',
+    'GD32F450_xK': ldscript_path/'gd32f450xK_flash.ld',
+    'GD32F450_xI': ldscript_path/'gd32f450xI_flash.ld',
+    'GD32F470_xE': ldscript_path/'gd32f470xE_flash.ld',
+    'GD32F470_xG': ldscript_path/'gd32f470xG_flash.ld',
+    'GD32F470_xK': ldscript_path/'gd32f470xK_flash.ld',
+    'GD32F470_xI': ldscript_path/'gd32f470xI_flash.ld',
 }
 
 chip_option = get_option('chip')
