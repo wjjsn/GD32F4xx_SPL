@@ -35,5 +35,5 @@ periph_src = [
 periph_lib = static_library('gd32f4xx_peripheral', periph_src,
                             include_directories: periph_root)
 
-gd32f4xx_periph_dep = declare_dependency(link_with: periph_lib,
-                                          include_directories: periph_root)
+set_variable('periph_root', periph_root)
+set_variable('periph_lib', periph_lib)

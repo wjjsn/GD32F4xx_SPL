@@ -19,6 +19,6 @@ chip_ld_map = {
     'GD32F470': cmsis_src_root + '/Ld/gd32f470xG_flash.ld',
 }
 
-gd32f4xx_cmsis_dep = declare_dependency(include_directories: cmsis_root,
-                                        variables: {'startup': chip_startup_map[get_option('chip')],
-                                                   'ldscript': chip_ld_map[get_option('chip')]})
+set_variable('cmsis_root', cmsis_root)
+set_variable('chip_startup', chip_startup_map[get_option('chip')])
+set_variable('chip_ldscript', chip_ld_map[get_option('chip')])

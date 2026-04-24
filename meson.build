@@ -27,3 +27,13 @@ add_project_arguments(global_args, language: 'c')
 
 subdir('CMSIS')
 subdir('GD32F4xx_standard_peripheral')
+
+gd32f4xx_dep = declare_dependency(
+    include_directories: [get_variable('cmsis_root'), get_variable('periph_root')],
+    link_with: get_variable('periph_lib'),
+    variables: {
+        'startup': get_variable('chip_startup'),
+        'ldscript': get_variable('chip_ldscript'),
+        'chip': get_option('chip')
+    }
+)
