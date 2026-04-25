@@ -1,4 +1,8 @@
-project('GD32F4xx_Firmware', 'c', version: '3.3.3')
+project('GD32F4xx_Firmware', 
+        'c', 
+        meson_version : '>= 1.3.0',
+        license : 'BSD 3-Clause License',
+        version: '3.3.3', )
 
 option_chip = get_option('chip')
 option_time = get_option('time')
