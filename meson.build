@@ -95,8 +95,6 @@ periph_src = [
 
 all_src = chip_startup_map[chip_family] + [system_src] + periph_src
 
-global_args = ['-mcpu=cortex-m4', '-mthumb', '-D' + option_chip, '-D__SYSTEM_CLOCK_' + time_map[option_time]]
-add_project_arguments(global_args, language: 'c')
 
 gd32f4xx_spl_inc = include_directories(
     'GD32F4xx_standard_peripheral'/'Include',
@@ -107,6 +105,6 @@ gd32f4xx_spl_inc = include_directories(
 GD32F4xx_SPL_dep = declare_dependency(
     include_directories: gd32f4xx_spl_inc,
     sources: all_src,
-    compile_args: ['-D' + chip_family],
+    compile_args: ['-mcpu=cortex-m4', '-mthumb', '-D' + chip_family],
     link_args: ['-T', chip_ld_map[option_chip]],
 )
