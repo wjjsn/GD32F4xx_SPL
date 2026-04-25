@@ -106,7 +106,7 @@ gd32f4xx_spl_inc = include_directories(
     'CMSIS',
 )
 
-GD32F4xx_SPL_dep = declare_dependency(
+gd32f4xx_spl_dep = declare_dependency(
     include_directories: gd32f4xx_spl_inc,
     sources: all_src,
     compile_args: ['-mcpu=cortex-m4', '-mthumb', '-D' + chip_family],
