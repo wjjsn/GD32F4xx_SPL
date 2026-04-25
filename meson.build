@@ -112,3 +112,4 @@ gd32f4xx_spl_dep = declare_dependency(
     compile_args: ['-mcpu=cortex-m4', '-mthumb', '-D' + chip_family],
     link_args: ['-T', chip_ld_map[option_chip]],
 )
+meson.override_dependency('gd32f4xx_spl', gd32f4xx_spl_dep)
