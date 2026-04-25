@@ -58,13 +58,15 @@ chip_ld_map = {
 }
 
 chip_startup_map = {
-    'GD32F405': ['CMSIS'/'GD'/'GD32F4xx'/'Source'/'GCC'/'startup_gd32f405_425.S', 'CMSIS'/'GD'/'GD32F4xx'/'Source'/'system_gd32f4xx.c'],
-    'GD32F407': ['CMSIS'/'GD'/'GD32F4xx'/'Source'/'GCC'/'startup_gd32f407_427.S', 'CMSIS'/'GD'/'GD32F4xx'/'Source'/'system_gd32f4xx.c'],
-    'GD32F425': ['CMSIS'/'GD'/'GD32F4xx'/'Source'/'GCC'/'startup_gd32f405_425.S', 'CMSIS'/'GD'/'GD32F4xx'/'Source'/'system_gd32f4xx.c'],
-    'GD32F427': ['CMSIS'/'GD'/'GD32F4xx'/'Source'/'GCC'/'startup_gd32f407_427.S', 'CMSIS'/'GD'/'GD32F4xx'/'Source'/'system_gd32f4xx.c'],
-    'GD32F450': ['CMSIS'/'GD'/'GD32F4xx'/'Source'/'GCC'/'startup_gd32f450_470.S', 'CMSIS'/'GD'/'GD32F4xx'/'Source'/'system_gd32f4xx.c'],
-    'GD32F470': ['CMSIS'/'GD'/'GD32F4xx'/'Source'/'GCC'/'startup_gd32f450_470.S', 'CMSIS'/'GD'/'GD32F4xx'/'Source'/'system_gd32f4xx.c'],
+    'GD32F405': ['CMSIS'/'GD'/'GD32F4xx'/'Source'/'GCC'/'startup_gd32f405_425.S'],
+    'GD32F407': ['CMSIS'/'GD'/'GD32F4xx'/'Source'/'GCC'/'startup_gd32f407_427.S'],
+    'GD32F425': ['CMSIS'/'GD'/'GD32F4xx'/'Source'/'GCC'/'startup_gd32f405_425.S'],
+    'GD32F427': ['CMSIS'/'GD'/'GD32F4xx'/'Source'/'GCC'/'startup_gd32f407_427.S'],
+    'GD32F450': ['CMSIS'/'GD'/'GD32F4xx'/'Source'/'GCC'/'startup_gd32f450_470.S'],
+    'GD32F470': ['CMSIS'/'GD'/'GD32F4xx'/'Source'/'GCC'/'startup_gd32f450_470.S'],
 }
+
+system_src = ['CMSIS'/'GD'/'GD32F4xx'/'Source'/'system_gd32f4xx.c']
 
 periph_src = [
     'GD32F4xx_standard_peripheral'/'Source'/'gd32f4xx_adc.c',
@@ -98,7 +100,7 @@ periph_src = [
     'GD32F4xx_standard_peripheral'/'Source'/'gd32f4xx_wwdgt.c',
 ]
 
-all_src = chip_startup_map[chip_family] + periph_src
+all_src = chip_startup_map[chip_family] + system_src + periph_src
 
 gd32f4xx_spl_inc = include_directories(
     'GD32F4xx_standard_peripheral'/'Include',
