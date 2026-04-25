@@ -7,6 +7,11 @@ if option_chip == ''
     error('chip option must be specified by user: meson setup -Dchip=GD32F407 <source_dir>')
 endif
 
+chip_family = option_chip.split('_')[0]
+
+ldscript_path = 'CMSIS'/'GD'/'GD32F4xx'/'Source'/'GCC'/'Ld'
+system_src = 'CMSIS'/'GD'/'GD32F4xx'/'Source'/'system_gd32f4xx.c'
+
 time_map = {
     'irc16m': 'IRC16M',
     'hxtal': 'HXTAL',
@@ -23,16 +28,6 @@ time_map = {
     '240m_8m_hxtal': '240M_PLL_8M_HXTAL',
     '240m_25m_hxtal': '240M_PLL_25M_HXTAL',
 }
-
-global_args = ['-mcpu=cortex-m4', '-mthumb', '-mfpu=fpv4-sp-d16', '-mfloat-abi=hard',
-               '-DGD32F4XX', '-D' + option_chip, '-D__SYSTEM_CLOCK_' + time_map[option_time]]
-
-add_project_arguments(global_args, language: 'c')
-
-chip_option = get_option('chip')
-chip_family = chip_option.split('_')[0]
-
-ldscript_path = 'CMSIS'/'GD'/'GD32F4xx'/'Source'/'GCC'/'Ld'
 
 chip_ld_map = {
     'GD32F405_xE': ldscript_path/'gd32f405_407_xE_flash.ld',
@@ -66,8 +61,6 @@ chip_startup_map = {
     'GD32F470': ['CMSIS'/'GD'/'GD32F4xx'/'Source'/'GCC'/'startup_gd32f450_470.S'],
 }
 
-system_src = ['CMSIS'/'GD'/'GD32F4xx'/'Source'/'system_gd32f4xx.c']
-
 periph_src = [
     'GD32F4xx_standard_peripheral'/'Source'/'gd32f4xx_adc.c',
     'GD32F4xx_standard_peripheral'/'Source'/'gd32f4xx_can.c',
@@ -100,7 +93,11 @@ periph_src = [
     'GD32F4xx_standard_peripheral'/'Source'/'gd32f4xx_wwdgt.c',
 ]
 
-all_src = chip_startup_map[chip_family] + system_src + periph_src
+all_src = chip_startup_map[chip_family] + [system_src] + periph_src
+
+global_args = ['-mcpu=cortex-m4', '-mthumb', '-mfpu=fpv4-sp-d16', '-mfloat-abi=hard',
+               '-DGD32F4XX', '-D' + option_chip, '-D__SYSTEM_CLOCK_' + time_map[option_time]]
+add_project_arguments(global_args, language: 'c')
 
 gd32f4xx_spl_inc = include_directories(
     'GD32F4xx_standard_peripheral'/'Include',
@@ -112,5 +109,5 @@ GD32F4xx_SPL_dep = declare_dependency(
     include_directories: gd32f4xx_spl_inc,
     sources: all_src,
     compile_args: ['-D' + chip_family],
-    link_args: ['-T', chip_ld_map[chip_option]],
+    link_args: ['-T', chip_ld_map[option_chip]],
 )
